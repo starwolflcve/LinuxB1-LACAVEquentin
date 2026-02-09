@@ -73,3 +73,19 @@ j'ai modifié mon adresse IP avec une adresse IP que je sais libres grace a `nma
 
 ### 1. DHCP
 
+- adresse IP (DHCP) du réseau WiFi : 198.168.1.246
+- date d'expiration de l'IP : 
+
+- **fonctionnement DHCP**
+```
+ Le DHCP est un protocole de la couche Application. Le rôle de ce protocole de couche application est de configurer dynamiquement un réseau sur l’hôte. Il facilite l’attribution de l’adresse IP du réseau de groupe de travail. Par conséquent, il n’exige pas que l’administrateur adresse IP statique à l’hôte à l’avance. Par conséquent, il n’y a pas de risque que les équipements terminaux soient configurés à double adresse sur le réseau. b. Le Processus de Négociation (DORA) L’attribution de l’adresse IP a un processus de quatre phases basées sur les messages UDP avec Port 67 et Port 68.
+```
+- nouvelle adresse IP (en ligne de commande)
+```
+
+```
+
+### 2.DNS
+
+- **adresse IP du serveur DNS** :
+- 
