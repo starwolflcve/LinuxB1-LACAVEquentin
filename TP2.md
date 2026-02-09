@@ -73,8 +73,8 @@ j'ai modifié mon adresse IP avec une adresse IP que je sais libres grace a `nma
 
 ### 1. DHCP
 
-- adresse IP (DHCP) du réseau WiFi : 198.168.1.246
-- date d'expiration de l'IP : 
+- adresse IP (DHCP) du réseau WiFi : 198.168.1.1
+- date d'expiration de l'IP : mardi 10 fevrier 2026 23:55:29
 
 - **fonctionnement DHCP**
 ```
@@ -82,10 +82,41 @@ j'ai modifié mon adresse IP avec une adresse IP que je sais libres grace a `nma
 ```
 - nouvelle adresse IP (en ligne de commande)
 ```
-
+j'ai tape sudo ipconfig set en0 DHCP ou ipconfig /renew et il m'a donne cette ip 198.168.1.1 (il m'a redonne la meme)
 ```
 
 ### 2.DNS
 
-- **adresse IP du serveur DNS** :
-- 
+- **adresse IP du serveur DNS** : 8.8.8.8
+> **utiliser l'outil `nslookup`** 
+
+- **faire un lookup** 
+```
+- google.com : 142.251.142.14
+- ynov.com : 104.26.11.233
+
+- interprétation des résultats
+
+
+```
+- **faire un reverse lookup**
+```
+- 78.78.21.21 : host-78-78-21-21.mobileonline.telia.com
+- 92.16.54.88 : host-92-16-54-88.as13285.net
+
+- interprétation des résultats :
+
+
+```
+
+### 3. Bonus : aller plus loin
+- ouvrir Wireshark pendant les requêtes DHCP et DNS
+
+- se renseigner sur les différences entre WiFi et câble
+
+- explorer l'interface d'administration de votre box (chez vous) avec tout ça en tête
+
+- sinon, elle sert à quoi la MAC si on a des IP ? => Se renseigner sur ARP
+
+- utiliser un switch (physique) et se connecter non pas à 2, mais à 3 ou 4 ou 5 et faire mumuse avec le réseau ainsi créé
+![]()
