@@ -34,6 +34,7 @@ on remarque que le fichier base64 est plus lourd
 
 ### 3. RSA (Chiffrement asymétrique)
 - Générez une paire de clés RSA de 2048 bits qui se nomme cle_lacQ.pem avec cette commande `openssl genrsa -out cle_lacQ.pem 2048`et on la regarde avec `cat cle_lacQ.pem`
+
 ![linux9](https://i.ibb.co/d0xWVmD9/linux9.jpg)
 
 - On va regarder un peu plus en détail les paramètres de la clé avec cette commande `openssl rsa -in cle_lacQ.pem -text -noout`
@@ -61,6 +62,7 @@ on constate que d'apres ces parametres la cle publique, contrairement à la clé
 #### 1. Génération d’un fichier binaire
 
 Créer un fichier data.bin contenant 100 Ko de données binaires aléatoires `dd if=/dev/urandom of=data.bin bs=1024 count=100` et vérifier sa taille `ls -lh data.bin`
+
 ![linux13](https://i.ibb.co/VcKCyk6P/Screenshot-2026-02-15-17-54-02.png)
 
 #### 2. Encodage
@@ -74,6 +76,7 @@ Comparer la taille de data.bin et data.b64.`ls -lh data.bin data.b64`
 
 Décoder le fichier data.b64 afin d’obtenir un fichier data_restored.bin.`base64 -d data.b64 > data_restored.bin`
 Vérifier que data.bin et data_restored.bin sont strictement identiques quand je tappe la commande il n'affiche rien se qui signifie que les deux fichier sont identique.`diff data.bin data_restored.bin`
+
 ![linux15](https://i.ibb.co/DP4qcKjk/Screenshot-2026-02-15-18-03-04.png)
 
 #### 4. Questions
@@ -125,6 +128,7 @@ Vérifier que le contenu correspond exactement à l’original avec cette comman
 
 Chiffrer une seconde fois le même fichier avec le même mot de passe.`openssl enc -aes-256-cbc -salt -pbkdf2 -iter 100000 -md sha256 -in confidentiel.txt -out confidentiel2.enc`
 Comparer les deux fichiers chiffrés.`sha256sum confidentiel.enc confidentiel2.enc`
+
 ![linux18](https://i.ibb.co/dnQSL3j/Screenshot-2026-02-15-18-36-11.png)
 
 #### 5. Questions
