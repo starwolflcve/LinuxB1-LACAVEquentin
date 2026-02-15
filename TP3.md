@@ -19,27 +19,37 @@ on remarque que le fichier base64 est plus lourd
 ### 2. AES (Chiffrement symétrique)
 - On va générer un autre fichier texte message aléatoire qui va créer un fichier texte contenant tous les mots du dictionnaire ayant ker comme sous-chaîne avec cette commande `cat /usr/share/dict/words | grep ker  | tr "\n" " " >message`
 ![linux4](https://i.ibb.co/HfkcdTVJ/linux4.jpg)
+
 - on va chiffrer le message en aes256 avec cette commande `openssl enc -e -salt -in message -out message_c -aes256 -pbkdf2 -md sha256`
 ![linux5](https://i.ibb.co/6c3j5YYk/linux5.jpg)
+
 - on procède maintenant au déchiffrement avec cette commande `openssl enc -d -in message_c -aes256 -pbkdf2 -md sha256`
 ![linux6](https://i.ibb.co/n81TtyWh/linux6.jpg)
-on peux voir le cryptogramme obtenu (message_c) avec `cat message_c`
+
+- on peux voir le cryptogramme obtenu (message_c) avec `cat message_c`
 ![linux7](https://i.ibb.co/60Wtdr1g/linux7.jpg)
+
 - Pour chiffrer et encoder en même temps en base64 avec cette commende `openssl enc -e -a -salt -in message -out message_c2 -aes256 -pbkdf2 -md sha256`et on le ragarde avec cette commande `cat message_c2`
 ![linux8](https://i.ibb.co/cSVDMvsZ/linux8.jpg)
+
 ### 3. RSA (Chiffrement asymétrique)
 - Générez une paire de clés RSA de 2048 bits qui se nomme cle_lacQ.pem avec cette commande `openssl genrsa -out cle_lacQ.pem 2048`et on la regarde avec `cat cle_lacQ.pem`
 ![linux9](https://i.ibb.co/d0xWVmD9/linux9.jpg)
+
 - On va regarder un peu plus en détail les paramètres de la clé avec cette commande `openssl rsa -in cle_lacQ.pem -text -noout`
 ![linux](https://i.ibb.co/7dXjmN1S/Screenshot-2026-02-15-17-02-17.jpg)
+
 - Maintenant on va protéger notre paire de clés RSA avec un chiffrement AES avec cette commande `https://i.ibb.co/vCRS5HRW/Screenshot-2026-02-15-17-13-55.png`
 ![linux](https://i.ibb.co/vCRS5HRW/Screenshot-2026-02-15-17-13-55.png)
+
 - on va maintenant exporter la clé publique garce a cette commende `openssl rsa -in cle_lacQ.pem -pubout -out clepublique_lacQ.pem`et on verifie avec cette commande `cat clepublique_lacQ.pem`
 ![linux10](https://i.ibb.co/FbRzw5wn/Screenshot-2026-02-15-17-20-27.png)
-On peut visualiser les paramètres de la clé publique :
+
+- On peut visualiser les paramètres de la clé publique :
 `openssl rsa -in clepublique_lacQ.pem -pubin -text -noout`
 ![linux11](https://i.ibb.co/ZRnwRDkc/Screenshot-2026-02-15-17-22-36.png)
-Que pouvons nous voir dans ces paramètres ?
+
+- Que pouvons nous voir dans ces paramètres ?
 ```
 on constate que d'apres ces parametres la cle publique, contrairement à la clé privée, la clé publique ne contient aucune information secrète
 ```
