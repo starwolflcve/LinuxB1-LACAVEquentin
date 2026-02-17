@@ -65,8 +65,41 @@ j'ai modifié mon adresse IP avec une adresse IP que je sais libres grace a `nma
 ```
 ---
 ## II. Exploration locale en duo
+### 1. Prérequis
+deux PCs avec ports RJ45
+un câble RJ45
+firewalls désactivés sur les deux PCs
+### 2. Cablage
+connection par cable via le hp de Quentin et de denael
+![photo]()
+### 3. Création du réseau
+- modifiez l'IP des deux machines pour qu'elles soient dans le même réseau
+pc1: 10.33.69.101
+pc2: 10.33.69.195
 
+- vérifiez à l'aide de commmande `ip a` et il on bien été modifier en 10.33.69.101,10.33.69.195.
+- utilisez ping pour tester la connectivité entre les deux machines avec
+`ping 10.33.69.195`
+![img]()
+`ping 10.33.69.10`
+![img]()
 
+testez avec un /24
+- PC 1 : sudo ip addr add 192.168.1.1/24 dev <interface>
+- PC 2 : sudo ip addr add 192.168.1.2/24 dev <interface>
+- Vérification : ip addr show <interface>
+- test : Depuis le PC 1, faites ping 192.168.1.2.
+![ping]()
+
+puis un /20
+- PC 1 : sudo ip addr add 172.16.0.1/20 dev <interface>
+- PC 2 : sudo ip addr add 172.16.15.254/20 dev <interface>
+- test : depuis le PC1, on ping 172.16.15.254
+![ping]()
+### 4. Utilisation d'un des deux comme gateway
+### 5. Petit chat privé ?
+### 6. Wireshark
+### 7. Firewall
 
 
 ## III. Manipulations d'autres outils/protocoles côté client
