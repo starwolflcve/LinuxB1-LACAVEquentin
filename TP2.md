@@ -97,6 +97,8 @@ puis un /20
 - test : depuis le PC1, on ping 172.16.15.254
 ![ping]()
 ### 4. Utilisation d'un des deux comme gateway
+
+
 ### 5. Petit chat privé ?
 ### 6. Wireshark
 ### 7. Firewall

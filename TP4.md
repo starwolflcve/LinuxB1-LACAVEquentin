@@ -52,14 +52,10 @@ Testez la connexion avec le nouveau port depuis la machine cliente en redemarant
 ## Partie 4 – Transfert de fichiers
 
 Transférez un fichier et un dossier depuis la machine cliente vers le serveur :
+ - SCP : scp fichier.txt serveur-tp:/home/etudiant/
+ - SFTP : explorez les commandes put, get, ls pour transférer et naviguer sur le serveur.
+ - RSYNC : synchronisez un dossier entre client et serveur.
 
-
-SCP : scp fichier.txt serveur-tp:/home/etudiant/
-
-
-SFTP : explorez les commandes put, get, ls pour transférer et naviguer sur le serveur.
-
-RSYNC : synchronisez un dossier entre client et serveur.
 
 Pistes : utilisez les options -a (archive), -v (verbose), -z (compression) pour RSYNC.
 ## Partie 5 – Analyse des logs et sécurité
