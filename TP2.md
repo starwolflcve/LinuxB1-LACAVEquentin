@@ -97,7 +97,19 @@ puis un /20
 - test : depuis le PC1, on ping 172.16.15.254
 ![ping]()
 ### 4. Utilisation d'un des deux comme gateway
-
+j'ai connecter un pc2 (client) a internet via pc1(hote)
+- sur mon pc1 (hote) 
+```
+j'ai overt le panneau de configuration pour modifier les propriete du wifi dans l'onglet partage en cochant la case "Autoriser d'autres utilisateurs du réseau à se connecter via la connexion Internet de cet ordinateur" et dans le menu deroulant en dessous j'ai sélectionnez votre carte Ethernet.
+```
+- sur mon pc2 (client)
+```
+J'ai desactiver le wifi du pc.
+je suis aller dans le panneau de configuration pour modifier les Protocole Internet version 4 (TCP/IPv4) dans les propriete de la carte Ethernet en mettant l'adresse IP : 192.168.137.2, le Masque de sous-réseau : 255.255.255.0 et la Passerelle par défaut : 192.168.137.1 soit le pc (hote).
+Et en dessous j'ai configuré le DNS en mettant celui de google (8.8.8.8)
+Et ensuite j'ai testé en fesant un ping 192.168.137.1 et un ping 8.8.8.8.
+```
+![img](https://i.ibb.co/Mky3mHTd/IMG-2172.jpg)
 
 ### 5. Petit chat privé ?
 ### 6. Wireshark
