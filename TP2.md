@@ -78,7 +78,7 @@ pc1: 192.168.1.40
 pc2: 192.168.1.131
 
 - vérifiez à l'aide de commmande `ip a` et il on bien été modifier
-![img]()
+![img](https://i.ibb.co/HLGNVbV6/Capture-d-cran-2026-02-18-231149.png)
 ![img]()
 - utilisez ping pour tester la connectivité entre les deux machines avec
 `ping 10.33.69.195`
