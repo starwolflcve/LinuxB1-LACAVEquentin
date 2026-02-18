@@ -73,11 +73,13 @@ firewalls désactivés sur les deux PCs
 connection par cable via le hp de Quentin et de denael
 ![photo]()
 ### 3. Création du réseau
-- modifiez l'IP des deux machines pour qu'elles soient dans le même réseau
-pc1: 10.33.69.101
-pc2: 10.33.69.195
+- modifiez l'IP des deux machines pour qu'elles soient dans le même réseau (masque : 255.255.255.0)
+pc1: 192.168.1.40
+pc2: 192.168.1.131
 
-- vérifiez à l'aide de commmande `ip a` et il on bien été modifier en 10.33.69.101,10.33.69.195.
+- vérifiez à l'aide de commmande `ip a` et il on bien été modifier
+![img]()
+![img]()
 - utilisez ping pour tester la connectivité entre les deux machines avec
 `ping 10.33.69.195`
 ![img]()
