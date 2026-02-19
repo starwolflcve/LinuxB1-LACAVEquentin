@@ -78,8 +78,25 @@ Pistes : utilisez les options -a (archive), -v (verbose), -z (compression) pour 
 ![img](https://i.ibb.co/99RyxxWj/Capture-d-cran-2026-02-19-114949.png)
 
 - Et testez un bannissement après plusieurs tentatives échouées.
+Par défaut, Fail2Ban protège ssh sur le port 22. j'utilise le port 2222. jevais cree un fichier de config locale avec cette commande `sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
+puis je modifie la configyration avec cette commande `sudo nano /etc/fail2ban/jail.local` et j'ajoute dans la selection sshd:
+```
+enabled = true
+port    = 2222
+maxretry = 3
+bantime  = 10m
+```
+![img](https://i.ibb.co/Qj8Xk4bh/Capture-d-cran-2026-02-19-151156.png)
 
-![img]()
+puis je redemarre le fail2ban `sudo systemctl restart fail2ban`
+
+![img](https://i.ibb.co/9Hk8WkwY/Capture-d-cran-2026-02-19-151356.png)
+
+je vais essayer le bannisement avec une tentation de 3 ou 4 connexion au ssh avec un mot de passe erroné avec cette commande `ssh quentin@172.20.10.10 -p 2222`
+![img](https://i.ibb.co/ycsbydJ3/Capture-d-cran-2026-02-19-152432.png)
+
+pour verifier je tape cette commande `sudo fail2ban-client status sshd`
+![img](https://i.ibb.co/whDGhRqB/Capture-d-cran-2026-02-19-152753.png)
 
 ## Partie 6 – Tunnel SSH
 
