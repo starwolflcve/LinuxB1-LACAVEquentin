@@ -128,14 +128,33 @@ Et ensuite j'ai testé en fesant un ping 192.168.137.1 et un ping 8.8.8.8.
 ![img](https://i.ibb.co/JRh4NHH3/Capture-d-cran-2026-02-19-01-27-49.png)
 - sur ubuntu `nc 192.168.1.1 8888`
 ![img](https://i.ibb.co/2b2hk0x/IMG-2177.jpg)
+
 ### 6. Wireshark
 1. On install Wireshark sur ubuntu avec
 `sudo apt update`
 `sudo apt install wireshark -y`
-2. 
+2. utilisez le pour observer les trames qui circulent entre vos deux carte Ethernet
+
+- pendant un ping
+![img]()
+
+- pendant un netcat
+![img]()
+
+- pendant que le PC1 sert du PC2 comme gateway
+![img]()
 
 ### 7. Firewall
 
+**le but est de configurer votre firewall pour faire fonctionner plusieurs choses**
+1. Activez votre firewall
+2. Autoriser ping
+- configurer le firewall de votre OS pour accepter le ping
+
+3. Autoriser nc sur un port spécifique
+- choisissez arbitrairement un port entre 1024 et 20000
+- vous utiliserez ce port pour communiquer avec netcat par groupe de 2 toujours
+- le firewall du PC serveur devra avoir un firewall activé et une netcat qui fonctionne
 
 ## III. Manipulations d'autres outils/protocoles côté client
 
