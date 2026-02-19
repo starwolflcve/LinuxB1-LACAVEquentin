@@ -100,13 +100,17 @@ pour verifier je tape cette commande `sudo fail2ban-client status sshd`
 
 ## Partie 6 – Tunnel SSH
 
+Créez un tunnel local pour accéder à un service web distant depuis la machine cliente avec cette commnade `ssh -L 8080:localhost:80 quentin@172.20.10.10 -p 2222`
+```
+le tunel local est un service (qui tourne sur le port 80) qui tourne sur une VM qui permet d'y accèder depuis le navigateur sur votre pc 
+```
+![img](https://i.ibb.co/BKNNxPmZ/Capture-d-cran-2026-02-19-154453.png)
 
-
-Créez un tunnel local pour accéder à un service web distant depuis la machine cliente.
-
-
-Créez un tunnel distant pour permettre l’accès SSH au client via le serveur.
-
+Créez un tunnel distant pour permettre l’accès SSH au client via le serveur avec cette commande `ssh -R 9090:localhost:22 quentin@172.20.10.10 -p 2222`
+```
+Tunnel Distant lui permet l-inverse du local car il permet a une personne de ce connecter pour accede au service qui tourne sur la machine client 
+```
+![img](https://i.ibb.co/7xvbvys6/Capture-d-cran-2026-02-19-154613.png)
 
 ## Partie 7 – Nginx et HTTPS
 
