@@ -129,7 +129,10 @@ Et ensuite j'ai testé en fesant un ping 192.168.137.1 et un ping 8.8.8.8.
 - sur ubuntu `nc 192.168.1.1 8888`
 ![img](https://i.ibb.co/2b2hk0x/IMG-2177.jpg)
 ### 6. Wireshark
-
+1. On install Wireshark sur ubuntu avec
+`sudo apt update`
+`sudo apt install wireshark -y`
+2. 
 
 ### 7. Firewall
 
