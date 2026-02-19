@@ -116,29 +116,44 @@ Tunnel Distant lui permet l-inverse du local car il permet a une personne de ce 
 
 
 
-Installez Nginx sur la VM.
+- Installez Nginx sur la VM.
+`sudo apt update`
+`sudo apt install nginx -y`
 
+- Créez un site test dans /var/www/site-tp et un fichier index.html avec un message de bienvenue.
+je crée le dossier du site avec cette commande `sudo mkdir -p /var/www/site-tp` et je crée la page d'acceuil en utilisant cette commande `echo "<h1>Bienvenue sur le serveur de Quentin !</h1>" | sudo tee /var/www/site-tp/index.html` qui va me crée un fichier html pour la page du site 
+![img](https://i.ibb.co/fV2b6g5L/Capture-d-cran-2026-02-19-160945.pngv)
 
-Créez un site test dans /var/www/site-tp et un fichier index.html avec un message de bienvenue.
+- Configurez Nginx pour servir ce site sur HTTP.
+Il faut maintenant dire à Nginx d'afficher ce fichier pour cela je cree un fichier de configuration `sudo nano /etc/nginx/sites-available/site-tp` en y mettant la configuration 
+```
+server {
+    listen 80;
+    server_name 192.168.1.40;
+    root /var/www/site-tp;
+    index index.html;
 
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+puis j'active le site et je redemare le nginx avec les deux commande suivante 
+`sudo ln -s /etc/nginx/sites-available/site-tp /etc/nginx/sites-enabled/`
+`sudo nginx -t && sudo systemctl restart nginx`
+![img](https://i.ibb.co/zV1W969g/Capture-d-cran-2026-02-19-232935.png)
 
-Configurez Nginx pour servir ce site sur HTTP.
+- Générez un certificat auto-signé pour HTTPS et configurez la redirection HTTP → HTTPS.
+Piste avec la commande qui sert a crée un certificat 
+```
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+-keyout /etc/ssl/private/nginx-selfsigned.key \
+-out /etc/ssl/certs/nginx-selfsigned.crt
+```
+![img](https://i.ibb.co/kVf7JhPm/Capture-d-cran-2026-02-19-235004.png)
 
-
-Générez un certificat auto-signé pour HTTPS et configurez la redirection HTTP → HTTPS.
-Piste :
-
-
-
-openssl req -x509 -nodes -days 365 -newkey rsa:2048
-
-
-
-Testez le site depuis le client :
-
-
-curl -k https://<IP_VM>
-
+- Testez le site depuis le client avec cette commande `curl -I http://172.20.10.10` et en testant le HTTPS avec cette commande `curl -k https://172.20.10.10`
+![img](https://i.ibb.co/SD0c1bmq/Capture-d-cran-2026-02-19-235707.png)
 
 ## Partie 8 – Firewall et permissions
 
