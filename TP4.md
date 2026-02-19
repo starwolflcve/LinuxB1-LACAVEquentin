@@ -24,6 +24,7 @@ Documentation : VirtualBox User Manual
 1. Installez le serveur SSH sur la VM.
 Indice : chercher le paquet openssh-server.
 avec la commande`sudo apt install openssh-server`
+
 ![img](https://i.ibb.co/h17Jh3ZD/Capture-d-cran-2026-02-17-102806.png)
 
 2. Vérifiez que le service SSH fonctionne et écoute sur un port.
@@ -46,29 +47,39 @@ et pour testé si tout est ok on se reconnecte avec cette commande `ssh quentin@
 - Modifiez la configuration SSH sur le serveur pour renforcer la sécurité :
 
 Dans ma VM Ubuntu j'ouvre le fichier `sudo nano /ect/ssh/sshd_config`puis j'ai modifier la ligne PermiRootLogin en `PermitRootLogin no` pour interdire l’accès root, puis j'ai désactivez l’authentification par mot de passe en mettant `no` sur la ligne `PasswordAuthentication` et j'ai changez le port par défaut (22) pour réduire les tentatives de brute-force par (2222).
+![img](https://i.ibb.co/rKx27Jnx/Capture-d-cran-2026-02-19-110822.png)
+![img](https://i.ibb.co/YFKfLdSn/Capture-d-cran-2026-02-19-110811.png)
+![img](https://i.ibb.co/n8CB2gnX/Capture-d-cran-2026-02-19-110801.png)
 
-Testez la connexion avec le nouveau port depuis la machine cliente en redemarant le serveur avec cette commande `sudo systemctl restart shh`et j'ai crée un alias SSH dans ~/.ssh/config pour simplifier les connexions 
+Testez la connexion avec le nouveau port depuis la machine cliente en redemarant le serveur avec cette commande `sudo systemctl restart shh`
+
+![img](https://i.ibb.co/zWYcgJJ9/Capture-d-cran-2026-02-18-011307.png)
+
+et j'ai crée un alias SSH dans ~/.ssh/config pour simplifier les connexions 
+![img](https://i.ibb.co/0p3Q1ntp/Capture-d-cran-2026-02-18-011014.png)
 
 ## Partie 4 – Transfert de fichiers
 
 Transférez un fichier et un dossier depuis la machine cliente vers le serveur :
- - SCP : scp fichier.txt serveur-tp:/home/etudiant/
- - SFTP : explorez les commandes put, get, ls pour transférer et naviguer sur le serveur.
- - RSYNC : synchronisez un dossier entre client et serveur.
-
+ - SCP : scp -P 2222 fichier.txt quentin@172.20.10.10:/home/quentin/
+ ![img](https://i.ibb.co/0pYbqT4f/Capture-d-cran-2026-02-19-105316.png)
+ - SFTP : explorez les commandes put, get, ls pour transférer et naviguer sur le serveur avec cette commande 'sftp -P 2222 quentin@172.20.10.10'
+ ![imf](https://i.ibb.co/5gX98wvF/Capture-d-cran-2026-02-19-111116.png)
+ - RSYNC : synchronisez un dossier entre client et serveur.(via Ubuntu)
+![img]()
 
 Pistes : utilisez les options -a (archive), -v (verbose), -z (compression) pour RSYNC.
 ## Partie 5 – Analyse des logs et sécurité
 
+- Suivez les logs d’authentification pour observer les connexions SSH avec sudo tail -f /var/log/auth.log
+![img](https://i.ibb.co/0VBjZNrB/Capture-d-cran-2026-02-19-114129.png)
 
-Suivez les logs d’authentification pour observer les connexions SSH :
+- Installez Fail2Ban avec  les commande suivante `sudo apt update` `sudo apt install fail2ban -y` et on verrifie si il fonctionne `sudo systemctl status fail2ban`
+![img](https://i.ibb.co/99RyxxWj/Capture-d-cran-2026-02-19-114949.png)
 
+- Et testez un bannissement après plusieurs tentatives échouées.
 
-sudo tail -f /var/log/auth.log
-
-
-
-Installez Fail2Ban et testez un bannissement après plusieurs tentatives échouées.
+![img]()
 
 ## Partie 6 – Tunnel SSH
 
