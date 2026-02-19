@@ -112,7 +112,25 @@ Et ensuite j'ai testé en fesant un ping 192.168.137.1 et un ping 8.8.8.8.
 ![img](https://i.ibb.co/Mky3mHTd/IMG-2172.jpg)
 
 ### 5. Petit chat privé ?
+`j'ai fais mon chat via Netcat sur mon mac et mon Ubuntu`
+1. On configure le ubuntu 
+- on identifie le nom de ta carte Ethernet avec la commande `ip link show`
+- on attribut une ip avec cette commande `sudo ip addr add 192.168.1.2/24 dev eno1` avec `eno1` le nom de ma carte 
+- et on active la carte avec `sudo ip link set eno1 up`
+![img](https://i.ibb.co/Nd5Dm7rZ/IMG-2174.jpg)
+2. on verifie la connection
+- on ping mon mac sur ubuntu avec `ping 192.168.1.1`
+![img](https://i.ibb.co/DfLWqnHD/IMG-2176.jpg)
+- on ping mon ubuntu avec `ping 192.168.1.2`
+![img](https://i.ibb.co/r2tTFHVS/Capture-d-cran-2026-02-19-01-20-58.png)
+3. lancer le chat 
+- sur le mac `nc -l 8888`
+![img](https://i.ibb.co/JRh4NHH3/Capture-d-cran-2026-02-19-01-27-49.png)
+- sur ubuntu `nc 192.168.1.1 8888`
+![img](https://i.ibb.co/2b2hk0x/IMG-2177.jpg)
 ### 6. Wireshark
+
+
 ### 7. Firewall
 
 
