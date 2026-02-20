@@ -92,7 +92,7 @@ puis je redemarre le fail2ban `sudo systemctl restart fail2ban`
 
 ![img](https://i.ibb.co/9Hk8WkwY/Capture-d-cran-2026-02-19-151356.png)
 
-je vais essayer le bannisement avec une tentation de 3 ou 4 connexion au ssh avec un mot de passe erroné avec cette commande `ssh quentin@172.20.10.10 -p 2222`
+je vais essayer le bannisement avec une tentation de 3 ou 4 connexion au ssh avec un mot de passe erroné avec cette commande `ssh quentin@192.168.1.27 -p 2222`
 ![img](https://i.ibb.co/ycsbydJ3/Capture-d-cran-2026-02-19-152432.png)
 
 pour verifier je tape cette commande `sudo fail2ban-client status sshd`
@@ -100,13 +100,13 @@ pour verifier je tape cette commande `sudo fail2ban-client status sshd`
 
 ## Partie 6 – Tunnel SSH
 
-Créez un tunnel local pour accéder à un service web distant depuis la machine cliente avec cette commnade `ssh -L 8080:localhost:80 quentin@172.20.10.10 -p 2222`
+Créez un tunnel local pour accéder à un service web distant depuis la machine cliente avec cette commnade `ssh -L 8080:localhost:80 quentin@192.168.1.27 -p 2222`
 ```
 le tunel local est un service (qui tourne sur le port 80) qui tourne sur une VM qui permet d'y accèder depuis le navigateur sur votre pc 
 ```
 ![img](https://i.ibb.co/BKNNxPmZ/Capture-d-cran-2026-02-19-154453.png)
 
-Créez un tunnel distant pour permettre l’accès SSH au client via le serveur avec cette commande `ssh -R 9090:localhost:22 quentin@172.20.10.10 -p 2222`
+Créez un tunnel distant pour permettre l’accès SSH au client via le serveur avec cette commande `ssh -R 9090:localhost:22 quentin@192.168.1.27 -p 2222`
 ```
 Tunnel Distant lui permet l-inverse du local car il permet a une personne de ce connecter pour accede au service qui tourne sur la machine client 
 ```
@@ -152,26 +152,32 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 ```
 ![img](https://i.ibb.co/kVf7JhPm/Capture-d-cran-2026-02-19-235004.png)
 
-- Testez le site depuis le client avec cette commande `curl -I http://172.20.10.10` et en testant le HTTPS avec cette commande `curl -k https://172.20.10.10`
+- Testez le site depuis le client avec cette commande `curl -I http://192.168.1.27` et en testant le HTTPS avec cette commande `curl -k https://192.168.1.27`
 ![img](https://i.ibb.co/SD0c1bmq/Capture-d-cran-2026-02-19-235707.png)
 
 ## Partie 8 – Firewall et permissions
 
+1. Configuration du Pare-feu (Firewall)
 
-Autorisez Nginx dans le firewall (ports HTTP/HTTPS).
-Piste :
+Par défaut, le pare-feu UFW (Uncomplicated Firewall) d'Ubuntu peut bloquer les connexions sur les ports Web. Nous devons autoriser explicitement le trafic HTTP (port 80) et HTTPS (port 443). j'ai utilise la commande `sudo ufw allow 'Nginx Full'`
+![img](https://i.ibb.co/vCx8W1sk/1.png)
 
+2. Attribution de la propriété
 
-sudo ufw allow 'Nginx Full'
+ Sous Linux, chaque fichier appartient à un utilisateur et à un groupe. Le serveur Nginx utilise l'utilisateur système www-data pour fonctionner.j'ai utilisé cette commande `sudo chown -R www-data:www-data /var/www/site-tp`
+![img](https://i.ibb.co/N0L80vN/2.png)
 
+3. Gestion des Droits d'Accès (Permissions)
 
+Nous utilisons la commande chmod (Change Mode) pour définir qui peut lire, écrire ou exécuter les fichiers. Pour un serveur Web, les dossiers doivent être "traversables" et les fichiers seulement "lisibles".
+`sudo find /var/www/site-tp -type d -exec chmod 755 {} \;`
+`sudo find /var/www/site-tp -type f -exec chmod 644 {} \;`
+![img](https://i.ibb.co/605SGXFB/3.png)
 
-Vérifiez les permissions sur /var/www/site-tp pour que Nginx puisse lire les fichiers.
+puis on trste si tous fonctionne avec cette commande `curl -k https://172.20.10.10`
+![img](https://i.ibb.co/BdmC6Yd/4.png)
 
-Pistes : utiliser chown et chmod pour définir le propriétaire et les droits.
 ## Partie 9 – Validation finale
-
-
 
 SSH fonctionnel sur port personnalisé et authentification par clé uniquement.
 
