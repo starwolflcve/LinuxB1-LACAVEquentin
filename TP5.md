@@ -9,7 +9,7 @@ Questions :
 - Quelle est l’adresse IP du LAN  ?
 `192.168.56.1`
 - Quelle est l’adresse IP du WAN ?
-`192.168.56.3`
+`10.0.2.15`
 - Pourquoi utilise-t-on HTTPS ?
 `Pour chiffrer la communication entre le navigateur et pfSense, éviter que les identifiants et les données d’administration soient lisibles en clair sur le réseau.c'est ajouté de la sécurité`
 - Pourquoi faut-il changer les identifiants par défaut sur un pare-feu ?
@@ -19,6 +19,8 @@ Questions :
 
 Modifiez les paramètres du compte administrateur.
 Questions :
+`j'ai modifier le mot de passe `
+![img](https://i.ibb.co/QF1Y5npq/Capture-d-cran-2026-02-23-104030.png)
 
 - Où se gèrent les utilisateurs ?
 `Dans l’interface d’administration de pfSense, menu System → User Manager`
@@ -32,6 +34,7 @@ Questions :
 ### 3. Vérification des interfaces
 
 Vérifiez l’affectation WAN / LAN.
+![img](https://i.ibb.co/rnnxtzf/Capture-d-cran-2026-02-23-104346.png)
 Questions :
 
 - Quelle interface permet l’accès Internet ?
@@ -46,6 +49,7 @@ Questions :
 ### 4. DHCP
 
 Configurez le serveur DHCP pour le réseau LAN.
+![img](https://i.ibb.co/zThQdN2b/Capture-d-cran-2026-02-23-105240.png)
 Questions :
 
 - Pourquoi utiliser DHCP plutôt qu’une IP fixe ?
@@ -58,11 +62,14 @@ Questions :
 Vérification :
 
 Ubuntu obtient-elle automatiquement une adresse IP ?
-``
+`oui car, par defaut, il obtient automatiquement une IP via le DHCP`
+![img](https://i.ibb.co/B53NMPnh/Capture-d-cran-2026-02-23-113417.png)
 
 ### 5. DNS
 
 Activez et configurez le résolveur DNS.
+![img](https://i.ibb.co/Y4n2vLnJ/Capture-d-cran-2026-02-23-113843.png)
+
 Questions :
 
 Pourquoi un pare-feu peut-il jouer le rôle de serveur DNS ?
@@ -104,6 +111,7 @@ Accès web
 
 Vérifiez la configuration du NAT sortant.
 ``
+![img]()
 
 Questions :
 
@@ -122,6 +130,7 @@ Comment vérifier qu’une traduction d’adresse a lieu ?
 
 Bloquez l’accès à un site web de votre choix.
 ``
+![img]()
 
 Questions :
 
@@ -136,11 +145,14 @@ Pourquoi le blocage par IP peut-il être contourné ?
 `Si vous bloquez monsite.com, un utilisateur averti peut parfois taper l'IP directement ou utiliser un VPN/Proxy.`
 
 Testez et observez les logs.
+![img]()
+
 ### 9. Blocage d’une catégorie de sites (jeux d’argent)
 
 Créez une solution propre et maintenable pour bloquer plusieurs sites.
 tips : réfléchissez à l’intérêt des alias.
 ``
+![img]()
 
 Questions :
 
@@ -161,6 +173,7 @@ Comment vérifier qu’une règle bloque réellement le trafic ?
 Créez un alias pour une nouvelle catégorie.
 Implémentez une règle.
 Analysez les logs.
+![img]()
 
 Question :
 
@@ -171,6 +184,7 @@ Que se passe-t-il si la règle est placée sous une règle "Pass Any" ?
 
 Créez un horaire.
 Appliquez-le à une règle existante.
+![img]()
 
 Questions :
 
@@ -180,10 +194,12 @@ Pourquoi les règles horaires sont-elles utiles en entreprise ?
 ### 12. Serveur web local
 
 Installez un serveur web sur Ubuntu.
+
 Objectifs :
 
 Autoriser un accès spécifique
 Bloquer les autres
+![img]()
 
 Questions :
 
@@ -199,8 +215,9 @@ Pourquoi le pare-feu protège-t-il le LAN même en réseau interne ?
 ### 13. Logs et analyse
 
 Activez la journalisation sur certaines règles.
-Questions :
+![img]()
 
+Questions :
 
 Différence entre paquet bloqué et autorisé
 Identifier quelle règle a déclenché le blocage
