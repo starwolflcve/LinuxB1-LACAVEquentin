@@ -109,29 +109,18 @@ Mise à jour et Installation
 
 ## Partie 3 : Création du profil client
 - Cree un fichier .ovpn
-
-    
+    j'ai fais un fichier nonne client.ovpn et je lui ai mis a l'interieur les certificats serveur et client, la clé du client et l'authentification TLS.
+    ![img](https://i.ibb.co/QjMQYKV2/Capture-d-cran-2026-03-01-090037.png)
+    ![img](https://i.ibb.co/YmbZL0w/Capture-d-cran-2026-03-01-090542.png)
+    ![img](https://i.ibb.co/dw3CwsWS/Capture-d-cran-2026-03-01-090559.png)
 
     Comment intégrer un certificat directement dans le fichier ?
 
-        [Réponse : utilisation des balises <ca>, <cert>, <key>]
+        On peut integrer un certificat directement dans le fichier .ovpn depuis la zone de texte 
 
     Sécurité : Pourquoi la clé privée ne doit-elle jamais être partagée ?
 
-        [Réponse]
-
-- Tests et Validation
-
-    Adresse IP obtenue sur le client : [192.168.1.40]
-
-    Vérification du trafic :
-
-        Commande utilisée : curl ifconfig.me ou traceroute
-    ![img]()
-
-    Blocage du port 1194 : Que se passe-t-il ?
-
-        [Réponse]
+        Car elle represente la securite principal qui protege car elle protege votre identite et elle chiffre vos données 
 
 ## Partie 4 : Bonus (Optionnel)
 
